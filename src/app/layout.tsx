@@ -1,10 +1,6 @@
 import type { Metadata } from 'next';
-import { Poppins } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
-import clsx from 'clsx';
-
-const poppins = Poppins({ subsets: ['latin'], weight: '400' });
 
 export const metadata: Metadata = {
   title: 'Sunstone',
@@ -18,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={clsx(poppins.className, 'container mx-auto p-10')}>
+      <body className="container mx-auto bg-background p-10 min-h-screen font-montserrat font-normal text-base">
         <Providers>{children}</Providers>
       </body>
     </html>
