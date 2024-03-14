@@ -34,6 +34,7 @@ export default function PasswordInput({
       type={isVisible ? 'text' : 'password'}
       className={className}
       classNames={{
+        ...props.classNames,
         input: clsx(isVisible ? 'text-small' : 'text-xl'),
       }}
       {...props}
