@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 @import url('../assets/styles/fonts.css');
+
+@layer utilities {
+    .items-normal {
+        align-items: normal;
+    }
+}

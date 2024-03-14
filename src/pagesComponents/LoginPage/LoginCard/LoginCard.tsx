@@ -1,3 +1,4 @@
+import { PasswordInput } from '@/components/UI/Input/PasswordInput';
 import { Input } from '@nextui-org/react';
 import Link from 'next/link';
 import React from 'react';
@@ -12,7 +13,16 @@ export const LoginCard = () => {
           Зарегистрируйтесь
         </Link>
       </span>
-      <Input type="email" label="Email" labelPlacement="outside" />
+      <div className="flex flex-col gap-5 w-full">
+        <Input
+          type="email"
+          label="Email"
+          labelPlacement="outside"
+          isClearable
+          fullWidth
+        />
+        <PasswordInput label="Пароль" labelPlacement="outside" fullWidth />
+      </div>
     </div>
   );
 };
