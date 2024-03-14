@@ -2,7 +2,6 @@ import { PasswordInput } from '@/components/UI/Input/PasswordInput';
 import { Input } from '@nextui-org/react';
 import { Button } from '@nextui-org/button';
 import Link from 'next/link';
-import React from 'react';
 
 export const LoginCard = () => {
   return (
