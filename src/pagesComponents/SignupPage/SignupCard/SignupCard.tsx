@@ -60,8 +60,7 @@ export const SignupCard = () => {
       setError('confirmPassword', {
         message: 'Пароли не совпадают',
       });
-    }
-    console.log(data);
+    } else console.log(data);
   };
 
   return (
@@ -85,12 +84,14 @@ export const SignupCard = () => {
             <Input
               {...field}
               errorMessage={errors.email?.message}
+              isInvalid={!!errors.email}
               variant="bordered"
               color="primary"
               type="email"
               label="Email"
               labelPlacement="outside"
               isClearable
+              onClear={() => field.onChange('')}
               fullWidth
               classNames={{
                 label: 'text-foreground-500',
@@ -107,6 +108,7 @@ export const SignupCard = () => {
             <PasswordInput
               {...field}
               errorMessage={errors.password?.message}
+              isInvalid={!!errors.password}
               variant="bordered"
               color="primary"
               label="Пароль"
@@ -126,7 +128,7 @@ export const SignupCard = () => {
             <PasswordInput
               {...field}
               errorMessage={errors.confirmPassword?.message}
-              isInvalid={!isSamePassword}
+              isInvalid={!!errors.confirmPassword}
               variant="bordered"
               color="primary"
               label="Подтвердить пароль"

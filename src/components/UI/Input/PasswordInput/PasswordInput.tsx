@@ -19,7 +19,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, IPasswordInputProps>(
         ref={passwordRef}
         endContent={
           <button
-            className="focus:outline-none"
+            className="focus-visible:outline-focus focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-2 focus-visible:rounded-full p-2 m-[-8px]"
             type="button"
             onClick={toggleVisibility}
           >
@@ -30,13 +30,12 @@ export const PasswordInput = forwardRef<HTMLInputElement, IPasswordInputProps>(
             )}
           </button>
         }
+        {...props}
         type={isVisible ? 'text' : 'password'}
         className={className}
         classNames={{
-          ...props.classNames,
-          input: clsx(isVisible ? 'text-small' : 'text-xl'),
+          input: clsx({ 'text-xl': !isVisible }),
         }}
-        {...props}
       />
     );
   }
