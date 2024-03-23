@@ -9,7 +9,7 @@ export const SignupCard = () => {
       <span className="text-xl font-semibold pb-4">Зарегистрироваться</span>
       <span className="text-xs pb-6">
         Уже есть аккаунт?{' '}
-        <Link href={'/signup'} className="text-primary">
+        <Link href={'/signin'} className="text-primary">
           Авторизуйтесь
         </Link>
       </span>
