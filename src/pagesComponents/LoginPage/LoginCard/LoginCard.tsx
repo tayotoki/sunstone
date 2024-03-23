@@ -8,13 +8,12 @@ import { defaultRules } from '@/app/utils/consts/validation.const';
 import { regExpHelper } from '@/app/utils/helpers/regExp.helper';
 import { PasswordInput } from '@/components/UI/Input/PasswordInput';
 import { Divider } from '@/components/UI/Divider';
-import Google from 'next-auth/providers/google';
 
 interface IFormType {
   email: string;
   password: string;
 }
-const formValidation: Record<keyof IFormType, RegisterOptions<IFormType>> = {
+const formValidation: FormType<IFormType> = {
   email: {
     ...defaultRules,
     pattern: {
@@ -24,12 +23,19 @@ const formValidation: Record<keyof IFormType, RegisterOptions<IFormType>> = {
   },
   password: {
     ...defaultRules,
+    minLength: {
+      value: 8,
+      message: 'Минимальная длина пароля 8',
+    },
+    pattern: {
+      value: /^(?=.*[A-Z])(?=.*[^A-Za-z\s]).{1,}$/,
+      message: 'Пароль должен содержать хотя бы одну заглавную букву и цифру',
+    },
   },
 };
 
 export const LoginCard = () => {
   const {
-    register,
     formState: { errors, isValid },
     handleSubmit,
     control,
@@ -51,7 +57,7 @@ export const LoginCard = () => {
       className="sm:w-[480px] w-full sm:rounded-xl bg-white py-5 px-10 flex flex-col items-center"
     >
       <span className="text-xl font-semibold pb-4">Войти</span>
-      <span className="text-xs pb-6">
+      <span className="text-small pb-6">
         Еще нет аккаунта?{' '}
         <Link href={'/signup'} className="text-primary">
           Зарегистрируйтесь
@@ -64,7 +70,8 @@ export const LoginCard = () => {
           rules={formValidation.email}
           render={({ field }) => (
             <Input
-              {...field}
+              value={field.value}
+              onChange={field.onChange}
               errorMessage={errors.email?.message}
               variant="bordered"
               color="primary"
@@ -72,6 +79,8 @@ export const LoginCard = () => {
               label="Email"
               labelPlacement="outside"
               isClearable
+              onClear={() => field.onChange('')}
+              isInvalid={!!errors.email}
               fullWidth
               classNames={{
                 label: 'text-foreground-500',
@@ -88,6 +97,7 @@ export const LoginCard = () => {
             <PasswordInput
               {...field}
               errorMessage={errors.password?.message}
+              isInvalid={!!errors.password}
               variant="bordered"
               color="primary"
               label="Пароль"
