@@ -54,7 +54,7 @@ export const LoginCard = () => {
   return (
     <form
       onSubmit={handleSubmit(handleLogin)}
-      className="sm:w-[480px] w-full sm:rounded-xl bg-white py-5 px-10 flex flex-col items-center"
+      className="sm:w-[480px] w-full rounded-xl bg-white py-5 px-10 flex flex-col items-center shadow-lg"
     >
       <span className="text-xl font-semibold pb-4">Войти</span>
       <span className="text-small pb-6">

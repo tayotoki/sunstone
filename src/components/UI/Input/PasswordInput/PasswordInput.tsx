@@ -34,6 +34,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, IPasswordInputProps>(
         type={isVisible ? 'text' : 'password'}
         className={className}
         classNames={{
+          ...props.classNames,
           input: clsx({ 'text-xl': !isVisible }),
         }}
       />
