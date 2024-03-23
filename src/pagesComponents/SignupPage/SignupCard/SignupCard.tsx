@@ -5,8 +5,8 @@ import { Button } from '@nextui-org/button';
 import Link from 'next/link';
 import { Divider } from '@/components/UI/Divider';
 import { Controller, useForm } from 'react-hook-form';
-import { regExpHelper } from '@/app/utils/helpers/regExp.helper';
-import { defaultRules } from '@/app/utils/consts/validation.const';
+import { regExpHelper } from '@/utils/helpers/regExp.helper';
+import { defaultRules } from '@/utils/consts/validation.const';
 
 interface IFormType {
   email: string;

@@ -4,8 +4,8 @@ import { Input } from '@nextui-org/react';
 import { Button } from '@nextui-org/button';
 import Link from 'next/link';
 import { Controller, RegisterOptions, useForm } from 'react-hook-form';
-import { defaultRules } from '@/app/utils/consts/validation.const';
-import { regExpHelper } from '@/app/utils/helpers/regExp.helper';
+import { defaultRules } from '@/utils/consts/validation.const';
+import { regExpHelper } from '@/utils/helpers/regExp.helper';
 import { PasswordInput } from '@/components/UI/Input/PasswordInput';
 import { Divider } from '@/components/UI/Divider';
 
