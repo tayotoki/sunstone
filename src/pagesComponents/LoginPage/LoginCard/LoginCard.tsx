@@ -8,6 +8,7 @@ import { defaultRules } from '@/app/utils/consts/validation.const';
 import { regExpHelper } from '@/app/utils/helpers/regExp.helper';
 import { PasswordInput } from '@/components/UI/Input/PasswordInput';
 import { Divider } from '@/components/UI/Divider';
+import Google from 'next-auth/providers/google';
 
 interface IFormType {
   email: string;
@@ -101,18 +102,22 @@ export const LoginCard = () => {
         <Link href="/restore" className="text-primary text-small">
           Забыли пароль?
         </Link>
-        <Divider text="или" />
       </div>
       <Button
         type="submit"
         color="primary"
-        className="text-white"
+        className="text-white mb-10"
         fullWidth
         size="lg"
         isDisabled={!isValid}
       >
         Войти
       </Button>
+      <Divider text="или" classNameWrapper="pb-10" />
+      <div className="flex justify-between gap-4 w-full">
+        <p>google</p>
+        <p>yandex</p>
+      </div>
     </form>
   );
 };
