@@ -27,6 +27,11 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'lh3.googleusercontent.com', port: '' },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -10,6 +10,9 @@ import { PasswordInput } from '@/components/UI/Input/PasswordInput';
 import { Divider } from '@/components/UI/Divider';
 import Image from 'next/image';
 import { AuthButton } from '@/components/UI/AuthButton/AuthButton';
+import { signIn } from 'next-auth/react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 interface IFormType {
   email: string;
@@ -37,6 +40,10 @@ const formValidation: FormType<IFormType> = {
 };
 
 export const LoginCard = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
+  const router = useRouter();
   const {
     formState: { errors, isValid },
     handleSubmit,
@@ -50,8 +57,18 @@ export const LoginCard = () => {
     },
   });
 
-  const handleLogin = (data: IFormType) => {
-    console.log(data);
+  const handleLogin = async (data: IFormType) => {
+    setIsLoading(true);
+    const res = await signIn('CredentialsSignIn', {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+
+    if (res && !res.error) {
+      setIsLoading(false);
+      router.push(callbackUrl);
+    } else console.log(res);
   };
   return (
     <form
@@ -122,6 +139,7 @@ export const LoginCard = () => {
         fullWidth
         size="lg"
         isDisabled={!isValid}
+        isLoading={isLoading}
       >
         Войти
       </Button>
@@ -133,6 +151,7 @@ export const LoginCard = () => {
           text="Sign with Google"
           width={24}
           height={24}
+          onClick={() => signIn('google', { callbackUrl })}
         />
         <AuthButton
           src="https://authjs.dev/img/providers/yandex.svg"
