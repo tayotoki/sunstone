@@ -8,6 +8,8 @@ import { defaultRules } from '@/utils/consts/validation.const';
 import { regExpHelper } from '@/utils/helpers/regExp.helper';
 import { PasswordInput } from '@/components/UI/Input/PasswordInput';
 import { Divider } from '@/components/UI/Divider';
+import Image from 'next/image';
+import { AuthButton } from '@/components/UI/AuthButton/AuthButton';
 
 interface IFormType {
   email: string;
@@ -54,7 +56,7 @@ export const LoginCard = () => {
   return (
     <form
       onSubmit={handleSubmit(handleLogin)}
-      className="sm:w-[480px] w-full rounded-xl bg-white py-5 px-10 flex flex-col items-center shadow-lg"
+      className=" rounded-xl bg-white py-5 px-10 flex flex-col items-center shadow-lg"
     >
       <span className="text-xl font-semibold pb-4">Войти</span>
       <span className="text-small pb-6">
@@ -124,9 +126,21 @@ export const LoginCard = () => {
         Войти
       </Button>
       <Divider text="или" classNameWrapper="pb-10" />
-      <div className="flex justify-between gap-4 w-full">
-        <p>google</p>
-        <p>yandex</p>
+      <div className="flex sm:flex-row flex-col justify-between gap-4 w-full">
+        <AuthButton
+          src="https://authjs.dev/img/providers/google.svg"
+          alt="google logo"
+          text="Sign with Google"
+          width={24}
+          height={24}
+        />
+        <AuthButton
+          src="https://authjs.dev/img/providers/yandex.svg"
+          alt="yandex logo"
+          text="Sign with Yandex"
+          width={24}
+          height={24}
+        />
       </div>
     </form>
   );
